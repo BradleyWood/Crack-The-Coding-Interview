@@ -18,14 +18,15 @@ public class Problem2Test extends TestCase {
 
     public void testReverse() {
         for(char[] c_str : TEST) {
-            char[] copy = Arrays.copyOf(c_str, c_str.length);
+            char[] copy = Arrays.copyOfRange(c_str, 0, len(c_str));
             reverse(c_str);
             // make sure it still ends with  null terminator
             assertTrue(c_str[len(c_str)] == 0);
 
             // reverse back and check that it equals the original
             reverse(c_str);
-            assertTrue(Arrays.equals(copy, 0, len(copy), c_str, 0, len(c_str)));
+
+            assertEquals(Arrays.hashCode(copy), Arrays.hashCode(Arrays.copyOfRange(c_str, 0, len(c_str))));
         }
     }
 }
